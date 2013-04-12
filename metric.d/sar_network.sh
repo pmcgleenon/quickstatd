@@ -14,6 +14,11 @@ else
 fi
 
 echo "Launching sar network monitoring, reporting data to $graphite_host"
-sar -n DEV $graphite_interval_seconds 99999999999 | gawk -f $QUICKSTATD_HOME/awk/sar_network.awk hostname=$HOSTNAME graphite_host=$graphite_host graphite_port=$graphite_port units=$UNITS &
+sar -n DEV $graphite_interval_seconds 99999999999 | gawk -f $QUICKSTATD_HOME/awk/sar_network.awk \
+                hostname=$HOSTNAME \
+                graphite_host=$graphite_host \
+                graphite_port=$graphite_port \
+                interface=$NETWORK_INTERFACE \
+                units=$UNITS &
 echo $! >> $PID_FILE
  

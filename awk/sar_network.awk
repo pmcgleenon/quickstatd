@@ -8,9 +8,7 @@
 
 
 /^[0-9]/{
-   if ($3=="IFACE") {
-   }
-   else {
+   if ($3==interface) {
       print "servers." hostname ".sar.network." $3 ".rxpck_persec " $4 " " systime() | "nc " graphite_host " " graphite_port
       print "servers." hostname ".sar.network." $3 ".txpck_persec " $5 " " systime() | "nc " graphite_host " " graphite_port
       print "servers." hostname ".sar.network." $3 ".rx_" units "_persec " $6 " " systime() | "nc " graphite_host " " graphite_port
